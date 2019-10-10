@@ -2,7 +2,7 @@
 <html ⚡>
 <head>
   <meta charset="utf-8">
-  <title>AMP A4A examples</title>
+  <title>RDN ads examples</title>
   <link rel="canonical" href="http://nonblocking.io/" >
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
   <link href='https://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
@@ -11,9 +11,16 @@
   <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
   <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
   <style amp-custom>
+    div[ad-wrapper] {
+      max-width: 50%;
+    }
     amp-ad {
       border: 1px solid #ccc;
-      max-width: 500px;
+    }
+    amp-ad[align-to-center] {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
     amp-ad div[placeholder] {
       background-color: lightgray;
@@ -41,71 +48,51 @@
   </style>
 </head>
 <body>
-  <h1>A4A Examples</h1>
+  <h1>Rakuten ad network Examples</h1>
 
-  <h2>Fake ad network</h2>
-  <amp-ad width="300" height="400"
-      type="fake"
-      id='i-amphtml-demo-id'
-      data-vars-analytics-var="bar"
-      src="/extensions/amp-ad-network-fake-impl/0.1/data/fake_amp.html">
-    <div placeholder></div>
-    <div fallback></div>
-  </amp-ad>
-
-  <h2>TripleLift ad network</h2>
-  <amp-ad width="297" height="410"
-      type="triplelift"
-      data-use-a4a="true"
-      src="https://ib.3lift.com/ttj?inv_code=ampforadstest_main_feed">
-    <div placeholder></div>
-    <div fallback></div>
-  </amp-ad>
-
-  <h2>Fake cloudflare as ad network ad</h2>
-  <amp-ad width="300" height="150"
-      type="cloudflare"
-      data-cf-network="cloudflare"
-      data-cf-a4a="true"
-      src="/fake_a4a.json.html">
-    <div placeholder></div>
-    <div fallback></div>
-  </amp-ad>
-
-  <h2>GMOSSP ad network</h2>
-  <amp-ad width="300" height="90"
-      type="gmossp"
-      data-use-a4a="true"
-      data-id="37831"
-      src="https://sp.gmossp-sp.jp/ads/ssp.ad?space_id=37831&is_a4a=1">
-    <div placeholder></div>
-    <div fallback></div>
-  </amp-ad>
-
-  <h2>Rakuten ad network</h2>
+  <h2>Layout: Responsive</h2>
+  <div ad-wrapper>
   <amp-ad
-    width="300"
-    height="250"
     type="rdn"
     data-id="63"
-    json='{"targeting":{"food":["burgers","chicken"]}, "genre":{"master_id":1, "code": "123455"}}'
-    src="/extensions/amp-ad-network-rdn-impl/0.1/data/rdn_amp.html">
+    json='{"targeting":{"food":["burgers","chicken"]}, "genre":{"match": "l1", "master_id":1, "code": "553529"}}'
+    src=https://dev-s-ad.rmp.rakuten.co.jp/amp
+    layout="responsive"
+    width="300"
+    height="250"
+  >
     <div placeholder></div>
     <div fallback></div>
   </amp-ad>
+  </div>
 
-  <h2>Regular ad</h2>
-  <amp-ad data-slot="/30497360/a4a/non_a4a_native"
-    height="250"
-    type="doubleclick"
-    width="300">
+  <h2>Layout: Fluid</h2>
+  <div ad-wrapper>
+  <amp-ad
+    align-to-center
+    type="rdn"
+    data-id="63"
+    json='{"genre":{"match": "l1", "master_id":1, "code": "553529"}}'
+    src=https://dev-s-ad.rmp.rakuten.co.jp/amp
+    layout="fluid"
+    height="fluid"
+  >
+    <div placeholder></div>
+    <div fallback></div>
   </amp-ad>
+  </div>
 
-  <h2>A4A ad</h2>
-  <amp-ad data-slot="/30497360/a4a/a4a_native"
-    height="250"
-    type="doubleclick"
-    width="300">
+  <h2>Rakuten ad network (Fluid: bottom, non-full-width)</h2>
+  <amp-ad
+    type="rdn"
+    data-full-width
+    data-id="63"
+    src=https://dev-s-ad.rmp.rakuten.co.jp/amp
+    layout="fluid"
+    height="fluid"
+  >
+    <div placeholder></div>
+    <div fallback></div>
   </amp-ad>
 </body>
 </html>
