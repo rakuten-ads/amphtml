@@ -28,6 +28,16 @@ export function rakutenunifiedads(global, data) {
   } else {
     data.env = '';
   }
-  global.runa = data;
+  const runa = {
+    data: data,
+    events: {
+      noContentAvailable: () => {
+        console.log('amp side: noContentAvailable()');
+        //global.context.noContentAvailable();
+      }  
+    },
+  };
+  global.runa = runa;
   writeScript(global, `https://${data.env}s-cdn.rmp.rakuten.co.jp/js/amp.js`);
+  //setTimeout(global.context.noContentAvailable(), 5000);
 }
